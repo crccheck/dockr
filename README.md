@@ -60,6 +60,14 @@ Delete all untagged containers
 dockr clean
 ```
 
+### cleani
+
+Delete all untagged images
+
+```bash
+dockr cleani
+```
+
 ### images
 
 List images, filtering out untagged images

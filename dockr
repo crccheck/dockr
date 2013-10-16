@@ -7,22 +7,7 @@ set -e
 
 case "$1" in
 
-# filter out untagged images
-images)
-    docker images | \grep -v ^\<
-    ;;
-
-# custom commands
-
-# build a tagged container image based on a *path*
-#
-# To make an image called `mysql` located at ./mysql:
-#
-#     $ dockr b mysql/
-#
-# You can also use relative paths, or leave it blank to use the current working
-# directory.
-#
+# Build a tagged container imaged based on a *path*
 # TODO: pass options (`-rm` looks promising)
 b)
     dockerfile_location=${2:-"."}
@@ -31,35 +16,37 @@ b)
     ;;
 
 
-# log into a container/image
-#
-#     $ dockr bash ubuntu:precise
-#     $ dockr bash c4f3
-#     $ dockr bash -v ~/tmp:/mnt/data c4f3
+# Log into a container/image
 bash)
     docker run -i -t ${@:2} /bin/bash
     ;;
 
-# delete all untagged containers
+# Delete all untagged containers
 clean)
     docker rm $(docker ps -a | awk '{print $1"\t"$2'} | \grep -v ':' | cut -f1)
     ;;
 
-# delete all untagged images
+# Delete all untagged images
 cleani)
     docker rmi $(docker images | awk '{print $2"\t"$3}' | \grep ^\< | cut -f2)
     ;;
 
-# get the ip address of a container
+# List images, filtering out untagged images
+images)
+    docker images | \grep -v ^\<
+    ;;
+
+# Get the IP address of a running container
 ip)
     docker inspect $2 | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[0]["NetworkSettings"]["IPAddress"]'
     ;;
 
+# Stop all running containers
 stopall)
     docker stop $(docker ps -q)
     ;;
 
-# pass everything else through
+# Anything else you try gets passed directly to `docker`
 *)
     docker $@
     ;;
