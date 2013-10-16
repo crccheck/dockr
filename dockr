@@ -7,7 +7,7 @@ set -e
 
 case "$1" in
 
-# Build a tagged container imaged based on a *path*
+# Build a tagged container image based on a *path*
 # TODO: pass options (`-rm` looks promising)
 b)
     dockerfile_location=${2:-"."}

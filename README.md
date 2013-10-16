@@ -31,11 +31,11 @@ The Good Stuff
 
 ### b
 
-Build a tagged container imaged based on a *path*
+Build a tagged container image based on a *path*
 
 To build an image called `redis` where the Dockerfile is located at ./redis:
 ```bash
-$ dockr b redis/
+dockr b redis/
 ```
 
 You can also use relative paths, or leave it blank to use the current working
@@ -48,9 +48,9 @@ directory.
 Log into a container/image
 
 ```bash
-$ dockr bash ubuntu:precise
-$ dockr bash c4f3
-$ dockr bash -v ~/tmp/data:/mnt/data c4f3
+dockr bash ubuntu:precise
+dockr bash c4f3
+dockr bash -v ~/tmp/data:/mnt/data c4f3
 ```
 
 If you pass in arguments, make sure the name is the last thing.
