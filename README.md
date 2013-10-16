@@ -33,12 +33,15 @@ The Good Stuff
 
 Build a tagged container imaged based on a *path*
 
+To build an image called `redis` where the Dockerfile is located at ./redis:
 ```bash
 $ dockr b redis/
 ```
 
 You can also use relative paths, or leave it blank to use the current working
 directory.
+
+*Alternative to: `docker build -t redis redis/`*
 
 ### bash
 
@@ -52,6 +55,8 @@ $ dockr bash -v ~/tmp/data:/mnt/data c4f3
 
 If you pass in arguments, make sure the name is the last thing.
 
+*Alternative to: `docker run -i -t -v ~/tmp/data:/mnt/data c4f3 /bin/bash`*
+
 ### clean
 
 Delete all untagged containers
@@ -59,6 +64,8 @@ Delete all untagged containers
 ```bash
 dockr clean
 ```
+
+*Alternative to: `docker rm $(some grep magic)`*
 
 ### cleani
 
@@ -68,6 +75,8 @@ Delete all untagged images
 dockr cleani
 ```
 
+*Alternative to: `docker rmi $(some grep magic)`*
+
 ### images
 
 List images, filtering out untagged images
@@ -75,6 +84,8 @@ List images, filtering out untagged images
 ```bash
 docker images
 ```
+
+*Alternative to: `docker images | grep blahblahblah`*
 
 ### ip
 
@@ -84,6 +95,8 @@ Get the IP address of a running container
 dockr ip c4f3
 ```
 
+*Alternative to: `docker inspect c4f3 | python -c 'import antigravity'`*
+
 ### stopall
 
 Stop all running containers
@@ -91,6 +104,8 @@ Stop all running containers
 ```bash
 dockr stopall
 ```
+
+*Alternative to: `docker stop $(docker ps -q)`*
 
 ### (and the rest)
 
