@@ -15,7 +15,7 @@ things like this.
 ```bash
 mkdir -p ~/bin
 cd ~/bin
-wget https://raw.github.com/crccheck/dockr/master/dockr && chmod o+x dockr
+wget https://raw.github.com/crccheck/dockr/master/dockr && chmod u+x dockr
 ```
 
 TODO add a line exporting ~/bin to bash profile for reference. It will
