@@ -9,7 +9,7 @@ A [Docker CLI] wrapper for lazy people
 Installation
 ------------
 
-Put `dockerfile` somewhere in your path. I keep a `bin` directory in my home for
+Put `dockr` somewhere in your path. I keep a `bin` directory in my home for
 things like this.
 
 ```bash
