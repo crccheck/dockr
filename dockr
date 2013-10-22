@@ -8,11 +8,11 @@ set -e
 case "$1" in
 
 # Build a tagged container image based on a *path*
-# TODO: pass options (`-rm` looks promising)
+# TODO: pass options
 b)
     dockerfile_location=${2:-"."}
     name=$(cd $dockerfile_location && echo ${PWD##*/})
-    docker build -t $name $dockerfile_location
+    docker build -t $name -rm $dockerfile_location
     ;;
 
 
