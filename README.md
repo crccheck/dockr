@@ -97,6 +97,15 @@ dockr ip c4f3
 
 *Alternative to: `docker inspect c4f3 | python -c 'import antigravity'`*
 
+
+### smite
+
+Stop and remove a running container
+
+```bash
+dockr smite 5029fc
+```
+
 ### stopall
 
 Stop all running containers
