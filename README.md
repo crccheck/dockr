@@ -29,6 +29,18 @@ The Good Stuff
 --------------
 ![](http://deadhomersociety.files.wordpress.com/2010/05/luckycharms.png)
 
+The commands I use the most are: `dockr b` - which builds an imaged and names
+it according to the directory, and `docker bash` - which lets me shell in
+quickly.
+
+Many of these commands were written for older versions of the docker cli. They
+have since done a better job of cleaning up intermediate containers and getting
+meta out.
+
+
+Full Reference
+--------------
+
 ### b
 
 Build a tagged container image based on a *path*
