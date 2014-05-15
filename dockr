@@ -12,7 +12,7 @@ case "$1" in
 b)
     dockerfile_location=${2:-"."}
     name=$(cd $dockerfile_location && echo ${PWD##*/})
-    docker build -t $name $dockerfile_location
+    docker build -t "$USER/$name" $dockerfile_location
     ;;
 
 
