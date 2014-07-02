@@ -27,8 +27,10 @@ clean)
     ;;
 
 # Delete all untagged images
+#
+# based on https://github.com/dotcloud/docker/issues/928#issuecomment-36481177
 cleani)
-    docker rmi $(docker images | awk '{print $2"\t"$3}' | \grep ^\< | cut -f2)
+    docker rmi $(docker images | awk '/^<none>/ { print $3 }')
     ;;
 
 # List images, filtering out untagged images
