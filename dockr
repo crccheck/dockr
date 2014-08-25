@@ -40,7 +40,7 @@ images)
 
 # Get the IP address of a running container
 ip)
-    docker inspect $2 | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[0]["NetworkSettings"]["IPAddress"]'
+    docker inspect --format '{{.NetworkSettings.IPAddress}}' $2
     ;;
 
 # Delete the latest container
