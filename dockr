@@ -16,9 +16,9 @@ b)
     ;;
 
 
-# Log into a container/image
+# Log into a image and throw away the container
 bash)
-    docker run -i -t ${@:2} /bin/bash
+    docker run --rm -i -t ${@:2} /bin/bash
     ;;
 
 # Delete all untagged containers
