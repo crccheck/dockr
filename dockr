@@ -43,9 +43,17 @@ ip)
     docker inspect $2 | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[0]["NetworkSettings"]["IPAddress"]'
     ;;
 
-# TODO make user confirm
+# Delete the latest container
 oops)
-    docker rm $(docker ps -l -q)
+    # http://stackoverflow.com/questions/3231804/in-bash-how-to-add-are-you-sure-y-n-to-any-command-or-alias
+    docker ps -l
+    read -r -p "Are you sure? [y/N] " response
+    response=${response,,}    # tolower
+    if [[ $response =~ ^(yes|y)$ ]]; then
+        docker rm $(docker ps -l -q)
+    else
+        echo 'Nevermind then'
+    fi
     ;;
 
 # Stop and remove a running container
