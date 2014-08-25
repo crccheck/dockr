@@ -109,6 +109,9 @@ dockr ip c4f3
 
 *Alternative to: `docker inspect c4f3 | python -c 'import antigravity'`*
 
+### oops
+
+Delete the most recent container
 
 ### smite
 

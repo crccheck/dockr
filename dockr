@@ -43,6 +43,11 @@ ip)
     docker inspect $2 | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[0]["NetworkSettings"]["IPAddress"]'
     ;;
 
+# TODO make user confirm
+oops)
+    docker rm $(docker ps -l -q)
+    ;;
+
 # Stop and remove a running container
 # I may just wrap `rm` and stop running containers
 smite)
