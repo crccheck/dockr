@@ -43,15 +43,33 @@ Full Reference
 
 ### b
 
-Build a tagged container image based on a *path*
+Build a tagged container image based on a *path*.
 
 To build an image called `redis` where the Dockerfile is located at ./redis:
+
 ```bash
 dockr b redis/
 ```
 
 You can also use relative paths, or leave it blank to use the current working
-directory.
+directory. It also always tries to namespace the image. By default, it will use
+your username (your username has to be more then 3 characters long), but you
+can override it with a `DOCKER_NAMESPACE` environment variable:
+
+```bash
+$ pwd
+/home/crccheck/dockerfiles/redis
+dockr b
+# ... stuff happens
+dockr images
+# crccheck/redis appears
+# OOPS, that docker image was supposed to be under another namespace
+export DOCKER_NAMESPACE=lollipop
+dockr b
+# ... stuff happens
+dockr images
+# lolliop/redis appears
+```
 
 *Alternative to: `docker build -t redis redis/`*
 

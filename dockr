@@ -10,9 +10,11 @@ case "$1" in
 # Build a tagged container image based on a *path*
 # TODO: pass options
 b)
+    namespace=${DOCKER_NAMESPACE:-$USER}
     dockerfile_location=${2:-"."}
     name=$(cd $dockerfile_location && echo ${PWD##*/})
-    docker build -t "$USER/$name" $dockerfile_location
+    # TODO let you build an image without a namespace
+    docker build -t "$namespace/$name" $dockerfile_location
     ;;
 
 
