@@ -20,7 +20,9 @@ b)
 
 # Log into a image and throw away the container
 bash)
-    docker run --rm -i -t ${@:2} /bin/bash
+    length=$(($#))
+    params=${@:2:$length}
+    docker run --rm -i -t $params /bin/bash
     ;;
 
 # Delete all untagged containers
