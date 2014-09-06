@@ -54,7 +54,7 @@ oops)
     read -r -p "Are you sure? [y/N] " response
     response=${response,,}    # tolower
     if [[ $response =~ ^(yes|y)$ ]]; then
-        docker rm $(docker ps -l -q)
+        docker rm -f $(docker ps -l -q)
     else
         echo 'Nevermind then'
     fi
