@@ -68,6 +68,7 @@ oops)
 # Stop and remove a running container
 # I may just wrap `rm` and stop running containers
 smite)
+    echo "Stopping and then removing $2"
     docker stop $2
     docker rm $2
     ;;
