@@ -7,6 +7,11 @@ set -e
 
 case "$1" in
 
+# Attach to a running container, turn signal proxy off by default
+attach)
+    docker attach --sig-proxy=false $2
+    ;;
+
 # Build a tagged container image based on a *path*
 # TODO: pass options
 b)

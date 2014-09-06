@@ -41,6 +41,17 @@ meta out.
 Full Reference
 --------------
 
+### attach
+
+Attach to a running container, only turn off the signal proxy by default. This
+way, ^C detaches from the container, instead of sending ^C to the container.
+
+```bash
+dockr attach postgis
+```
+
+*Alternative to: `docker attach --six-proxy=false postgis`*
+
 ### b
 
 Build a tagged container image based on a *path*.
