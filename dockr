@@ -52,6 +52,11 @@ ip)
     docker inspect --format '{{.NetworkSettings.IPAddress}}' $2
     ;;
 
+# Get just the port number for a NAT-ed port
+prt)
+    docker port ${@:2:$#} | cut -d : -f 2
+    ;;
+
 # Delete the latest container
 oops)
     # http://stackoverflow.com/questions/3231804/in-bash-how-to-add-are-you-sure-y-n-to-any-command-or-alias

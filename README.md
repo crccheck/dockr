@@ -138,6 +138,15 @@ dockr ip c4f3
 
 *Alternative to: `docker inspect c4f3 | python -c 'import antigravity'`*
 
+### prt
+
+Get just the port number for a NAT-ed port
+
+    $ dockr port mysql 3306
+    49217
+
+*Alternative to: `docker port mysql 3306|cut -d : -f 2`*
+
 ### oops
 
 Delete the most recent container
