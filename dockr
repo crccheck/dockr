@@ -24,10 +24,12 @@ b)
 
 
 # Log into a image and throw away the container
+#
+# dummy entrypoint so we can open a terminal on entrypoint images
 bash)
     length=$(($#))
     params=${@:2:$length}
-    docker run --rm -i -t $params /bin/bash
+    docker run --rm --entrypoint='sudo' --interactive --tty $params /bin/bash
     ;;
 
 # Delete all untagged containers
