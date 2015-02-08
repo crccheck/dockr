@@ -76,7 +76,7 @@ dockr images
 # crccheck/redis appears
 # OOPS, that docker image was supposed to be under another namespace
 export DOCKER_NAMESPACE=lollipop
-dockr b
+dockr b --no-cache
 # ... stuff happens
 dockr images
 # lolliop/redis appears
