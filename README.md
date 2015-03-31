@@ -169,6 +169,16 @@ dockr stopall
 
 *Alternative to: `docker stop $(docker ps -q)`*
 
+### top
+
+View stats on all running containers
+
+```bash
+dockr top
+```
+
+*Alternative to: `docker stats $(docker ps -q)`*
+
 ### (and the rest)
 
 Anything else you try gets passed directly to `docker`

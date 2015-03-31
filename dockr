@@ -91,6 +91,18 @@ stopall)
     docker stop $(docker ps -q)
     ;;
 
+top)
+    container_ids=$(docker ps -q)
+    hosts=""
+
+    # Append hosts entry
+    for i in $container_ids; do
+      name=$(docker inspect --format '{{.Name}}' $i)
+      hosts="$hosts ${name:1}"
+    done
+    docker stats ${hosts}
+    ;;
+
 # Anything else you try gets passed directly to `docker`
 *)
     docker $@
