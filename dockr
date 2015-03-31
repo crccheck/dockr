@@ -50,6 +50,16 @@ cleani)
     docker rmi $(docker images --quiet --filter dangling=true)
     ;;
 
+ctop)
+    container_ids=$(docker ps -q)
+    hosts=""
+    for i in $container_ids; do
+      name=$(docker inspect --format '{{.Name}}' $i)
+      hosts="$hosts ${name:1}"
+    done
+    docker stats ${hosts}
+    ;;
+
 # List images, filtering out untagged images
 images)
     docker images | \grep -v ^\<
@@ -89,18 +99,6 @@ smite)
 # Stop all running containers
 stopall)
     docker stop $(docker ps -q)
-    ;;
-
-top)
-    container_ids=$(docker ps -q)
-    hosts=""
-
-    # Append hosts entry
-    for i in $container_ids; do
-      name=$(docker inspect --format '{{.Name}}' $i)
-      hosts="$hosts ${name:1}"
-    done
-    docker stats ${hosts}
     ;;
 
 # Anything else you try gets passed directly to `docker`

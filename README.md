@@ -118,6 +118,16 @@ dockr cleani
 
 *Alternative to: `docker rmi $(some grep magic)`*
 
+### ctop
+
+View stats on all running containers
+
+```bash
+dockr ctop
+```
+
+*Alternative to: `docker stats $(docker ps -q)`*
+
 ### images
 
 List images, filtering out untagged images
@@ -168,16 +178,6 @@ dockr stopall
 ```
 
 *Alternative to: `docker stop $(docker ps -q)`*
-
-### top
-
-View stats on all running containers
-
-```bash
-dockr top
-```
-
-*Alternative to: `docker stats $(docker ps -q)`*
 
 ### (and the rest)
 
