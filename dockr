@@ -37,7 +37,19 @@ b)
 bash)
     length=$(($#))
     params=${@:2:$length}
-    docker run --rm --entrypoint='sudo' --interactive --tty $params /bin/bash
+    docker run --rm --interactive --tty $params /bin/bash
+    ;;
+
+bash2)
+    length=$(($#))
+    params=${@:2:$length}
+    docker run --rm --interactive --tty --entrypoint=/bin/bash $params
+    ;;
+
+bash3)
+    length=$(($#))
+    params=${@:2:$length}
+    docker run --rm --interactive --tty --entrypoint=sudo $params /bin/bash
     ;;
 
 # Delete all untagged containers

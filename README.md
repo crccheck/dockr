@@ -98,6 +98,9 @@ If you pass in arguments, make sure the name is the last thing.
 
 *Alternative to: `docker run -i -t -v ~/tmp/data:/mnt/data c4f3 /bin/bash`*
 
+Depending on the image, you may need an alternate method of logging in, just
+start using `bash2`, `bash3`, etc. until something works.
+
 ### clean
 
 Delete all untagged containers
