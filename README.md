@@ -149,7 +149,7 @@ Get the IP address of a running container
 dockr ip c4f3
 ```
 
-*Alternative to: `docker inspect c4f3 | python -c 'import antigravity'`*
+*Alternative to: `docker inspect --format '{{.NetworkSettings.IPAddress}}' c4f3`
 
 ### prt
 
