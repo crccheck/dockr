@@ -86,7 +86,8 @@ dockr images
 
 ### bash
 
-Log into a container/image
+Log into a container/image. For containers, it will use `docker exec` instead
+of `docker run`.
 
 ```bash
 dockr bash ubuntu:precise

@@ -35,10 +35,21 @@ b)
 #
 # dummy entrypoint so we can open a terminal on entrypoint images
 bash)
-    length=$(($#))
-    params=${@:2:$length}
+  length=$(($#))
+  params=${@:2:$length}
+  target=${@: -1}
+  set +e
+  # Is target a container or image?
+  \docker inspect ${target} &>/dev/null
+  set -e
+  if [ $? -eq 0 ]; then
+    # echo ${target} is a container
+    docker exec --interactive --tty $target /bin/bash
+  else
+    # echo ${target} is an image
     docker run --rm --interactive --tty $params /bin/bash
-    ;;
+  fi
+  ;;
 
 bash2)
     length=$(($#))
