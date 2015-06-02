@@ -40,14 +40,14 @@ bash)
   target=${@: -1}
   set +e
   # Is target a container or image?
-  \docker inspect ${target} &>/dev/null
+  check=$(docker inspect --format '{{.Architecture}}' ${target})
   set -e
-  if [ $? -eq 0 ]; then
+  if [ "${check}" == "<no value>" ]; then
     # echo ${target} is a container
-    docker exec --interactive --tty $target /bin/bash
+    docker exec --interactive --tty ${target} /bin/bash
   else
     # echo ${target} is an image
-    docker run --rm --interactive --tty $params /bin/bash
+    docker run --rm --interactive --tty ${params} /bin/bash
   fi
   ;;
 
