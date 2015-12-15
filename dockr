@@ -88,9 +88,12 @@ images)
     docker images | \grep -v ^\<
     ;;
 
-# Get the IP address of a running container
+# Get the IP addresses of a running container
 ip)
-    docker inspect --format '{{.NetworkSettings.IPAddress}}' $2
+    ips=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $2)
+    ips="${ips} $(docker inspect --format '{{range .NetworkSettings.Networks}} {{.IPAddress}} {{end}}' $2)"
+    # Collapse whitespace
+    echo ${ips}
     ;;
 
 # Get just the port number for a NAT-ed port
@@ -103,8 +106,9 @@ oops)
     # http://stackoverflow.com/questions/3231804/in-bash-how-to-add-are-you-sure-y-n-to-any-command-or-alias
     docker ps -l
     read -r -p "Are you sure? [y/N] " response
-    response=${response,,}    # tolower
-    if [[ $response =~ ^(yes|y)$ ]]; then
+    # TODO this does not work in osx: `${response,,}: bad substitution`
+    # response=${response,,}    # tolower
+    if [[ "$response" =~ ^(yes|y)$ ]]; then
         docker rm -f $(docker ps -l -q)
     else
         echo 'Nevermind then'
