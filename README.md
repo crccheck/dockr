@@ -86,21 +86,14 @@ dockr images
 
 ### bash
 
-Log into a container/image. For containers, it will use `docker exec` instead
-of `docker run`.
+Create a bash shell based on a one-off container based on an image.
 
-```bash
-dockr bash ubuntu:precise
-dockr bash c4f3
-dockr bash -v ~/tmp/data:/mnt/data c4f3
-```
+    dockr bash ubuntu:precise
+    dockr bash -v ~/tmp/data:/mnt/data c4f3
 
-If you pass in arguments, make sure the name is the last thing.
+If you pass in arguments, make sure the image name is the last parameter.
 
 *Alternative to: `docker run -i -t -v ~/tmp/data:/mnt/data c4f3 /bin/bash`*
-
-Depending on the image, you may need an alternate method of logging in, just
-start using `bash2`, `bash3`, etc. until something works.
 
 ### clean
 
@@ -164,6 +157,14 @@ Get just the port number for a NAT-ed port
 ### oops
 
 Delete the most recent container
+
+### shell
+
+Open a bash shell into a running container.
+
+    $ dockr shell triangle_pascal
+
+*Alternative to: `docker exec -it triangle_pascal /bin/bash`*
 
 ### smite
 

@@ -30,38 +30,18 @@ b)
     docker build -t "$namespace/$name" $params $dockerfile_location
     ;;
 
-
 # Log into a image and throw away the container
-#
-# dummy entrypoint so we can open a terminal on entrypoint images
 bash)
   length=$(($#))
   params=${@:2:$length}
   target=${@: -1}
-  set +e
-  # Is target a container or image?
-  check=$(docker inspect --format '{{.Architecture}}' ${target})
-  set -e
-  if [ "${check}" == "<no value>" ]; then
-    # echo ${target} is a container
-    docker exec --interactive --tty ${target} /bin/bash
-  else
-    # echo ${target} is an image
-    docker run --rm --interactive --tty ${params} /bin/bash
-  fi
+  docker run --rm --interactive --tty ${params} /bin/bash
   ;;
 
-bash2)
-    length=$(($#))
-    params=${@:2:$length}
-    docker run --rm --interactive --tty --entrypoint=/bin/bash $params
-    ;;
-
-bash3)
-    length=$(($#))
-    params=${@:2:$length}
-    docker run --rm --interactive --tty --entrypoint=sudo $params /bin/bash
-    ;;
+# Shell into a running container
+shell)
+  docker exec --interactive --tty ${target} /bin/bash
+  ;;
 
 # Delete all untagged containers
 clean)
