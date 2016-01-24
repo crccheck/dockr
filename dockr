@@ -70,8 +70,8 @@ images)
 
 # Get the IP addresses of a running container
 ip)
-    ips=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $2)
-    ips="${ips} $(docker inspect --format '{{range .NetworkSettings.Networks}} {{.IPAddress}} {{end}}' $2)"
+    # ips=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $2)
+    ips="$(docker inspect --format '{{range .NetworkSettings.Networks}} {{.IPAddress}} {{end}}' $2)"
     # Collapse whitespace
     echo ${ips}
     ;;
