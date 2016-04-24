@@ -40,6 +40,9 @@ bash)
 
 # Shell into a running container
 shell)
+  length=$(($#))
+  params=${@:2:$length}
+  target=${@: -1}
   docker exec --interactive --tty ${target} /bin/bash
   ;;
 
